@@ -624,7 +624,10 @@ class Ridge(_BaseRidge, RegressorMixin):
 
     See also
     --------
-    RidgeClassifier, RidgeCV, :class:`sklearn.kernel_ridge.KernelRidge`
+    RidgeClassifier : Ridge classifier
+    RidgeCV : Ridge regression with built-in cross validation
+    :class:`sklearn.kernel_ridge.KernelRidge` : Kernel ridge regression
+        combines ridge regression with the kernel trick
 
     Examples
     --------
@@ -770,7 +773,8 @@ class RidgeClassifier(LinearClassifierMixin, _BaseRidge):
 
     See also
     --------
-    Ridge, RidgeClassifierCV
+    Ridge : Ridge regression
+    RidgeClassifierCV :  Ridge classifier with built-in cross validation
 
     Notes
     -----
@@ -871,7 +875,7 @@ class _RidgeGCV(LinearModel):
 
     References
     ----------
-    http://cbcl.mit.edu/projects/cbcl/publications/ps/MIT-CSAIL-TR-2007-025.pdf
+    http://cbcl.mit.edu/publications/ps/MIT-CSAIL-TR-2007-025.pdf
     http://www.mit.edu/~9.520/spring07/Classes/rlsslides.pdf
     """
 
@@ -990,7 +994,7 @@ class _RidgeGCV(LinearModel):
 
         Returns
         -------
-        self : Returns self.
+        self : object
         """
         X, y = check_X_y(X, y, ['csr', 'csc', 'coo'], dtype=np.float64,
                          multi_output=True, y_numeric=True)
@@ -1109,7 +1113,7 @@ class _BaseRidgeCV(LinearModel):
 
         Returns
         -------
-        self : Returns self.
+        self : object
         """
         if self.cv is None:
             estimator = _RidgeGCV(self.alphas,
@@ -1233,9 +1237,9 @@ class RidgeCV(_BaseRidgeCV, RegressorMixin):
 
     See also
     --------
-    Ridge: Ridge regression
-    RidgeClassifier: Ridge classifier
-    RidgeClassifierCV: Ridge classifier with built-in cross validation
+    Ridge : Ridge regression
+    RidgeClassifier : Ridge classifier
+    RidgeClassifierCV : Ridge classifier with built-in cross validation
     """
     pass
 
@@ -1318,9 +1322,9 @@ class RidgeClassifierCV(LinearClassifierMixin, _BaseRidgeCV):
 
     See also
     --------
-    Ridge: Ridge regression
-    RidgeClassifier: Ridge classifier
-    RidgeCV: Ridge regression with built-in cross validation
+    Ridge : Ridge regression
+    RidgeClassifier : Ridge classifier
+    RidgeCV : Ridge regression with built-in cross validation
 
     Notes
     -----
@@ -1353,7 +1357,6 @@ class RidgeClassifierCV(LinearClassifierMixin, _BaseRidgeCV):
         Returns
         -------
         self : object
-            Returns self.
         """
         check_X_y(X, y, accept_sparse=['csr', 'csc', 'coo'],
                   multi_output=True)
